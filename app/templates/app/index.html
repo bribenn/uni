@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unison</title>
+</head>
+<body>
+	<!-- raw data table -->
+	<table style="width:50% text-align:center">
+	  <tr>
+	    <th>Address</th>
+	    <th>Square Footage</th> 
+	    <th>Price</th>
+	  </tr>
+	  {% for entry in entries %}
+		  <tr>
+		    <td>{{entry.address}}</td>
+		    <td>{{entry.sq_ft}}</td> 
+		    <td>{{entry.price}}</td>
+		  </tr>
+	  {% endfor %}
+	</table>
+	<!-- submit button to get cleaned data -->
+	<form action='/clean_data' method='get'>
+		{% csrf_token %}
+		<input type="submit" value="clean data">
+	</form>
+	<p>new data:</p>
+	<!-- cleaned data table -->
+	<table style="width:50% text-align:center">
+	  <tr>
+	    <th>Address</th>
+	    <th>Square Footage</th> 
+	    <th>Price</th>
+	    <th>Price Per Square Foot</th>
+	  </tr>
+	  {% for address in addresses %}
+		  <tr>
+		    <td>{{address}}</td>
+	  {% endfor %}
+	  {% for sq_ft in square_feets %}
+		    <td>{{sq_ft}}</td>
+      {% endfor %}
+	  {% for price in prices %}
+		    <td>{{price}}</td>
+	  {% endfor %}
+		    <td>{{entry.price_per_sq_ft}}</td>
+		  </tr>
+	</table>
+
+</body>
+</html>
